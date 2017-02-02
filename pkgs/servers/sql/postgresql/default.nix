@@ -3,7 +3,7 @@ let
   generic =
       # dependencies
       { stdenv, lib, fetchurl, makeWrapper
-      , glibc, zlib, readline, openssl, icu, systemd, libossp_uuid
+      , glibc, zlib, readline, openssl, openssl_1_0_2, icu, systemd, libossp_uuid
       , pkgconfig, libxml2, tzdata
 
       # for postgreql.pkgs
@@ -29,8 +29,9 @@ let
     setOutputFlags = false; # $out retains configureFlags :-/
 
     buildInputs =
-      [ zlib readline openssl libxml2 makeWrapper ]
+      [ zlib readline libxml2 makeWrapper ]
       ++ lib.optionals icuEnabled [ icu ]
+      ++ [ (if atLeast "9.5" then openssl else openssl_1_0_2) ]
       ++ lib.optionals (atLeast "9.6" && !stdenv.isDarwin) [ systemd ]
       ++ lib.optionals (!stdenv.isDarwin) [ libossp_uuid ];
 
