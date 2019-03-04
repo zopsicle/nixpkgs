@@ -18484,7 +18484,6 @@ in
 
   monero = callPackage ../applications/altcoins/monero {
     inherit (darwin.apple_sdk.frameworks) CoreData IOKit PCSC;
-    boost = boost15x;
   };
 
   monero-gui = libsForQt5.callPackage ../applications/altcoins/monero-gui {
