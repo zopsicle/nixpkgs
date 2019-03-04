@@ -1,7 +1,9 @@
-{ stdenv, callPackage, lib, enableNpm ? true }:
+{ stdenv, callPackage, lib, openssl_1_0_2, enableNpm ? true }:
 
 let
-  buildNodejs = callPackage ./nodejs.nix {};
+  buildNodejs = callPackage ./nodejs.nix {
+    openssl = openssl_1_0_2;
+  };
 in
   buildNodejs {
     inherit enableNpm;
