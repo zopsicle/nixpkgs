@@ -1,5 +1,7 @@
 { lib, stdenv, fetchurl, gcc, flex, bison, texinfo, jdk, erlang, makeWrapper
-, readline }:
+, readline
+, erlangGrade ? false
+, javaGrade ? false }:
 
 stdenv.mkDerivation rec {
   pname = "mercury";
@@ -11,7 +13,9 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ makeWrapper ];
-  buildInputs = [ gcc flex bison texinfo jdk erlang readline ];
+  buildInputs = [ gcc flex bison texinfo readline ]
+    ++ lib.optionals erlangGrade [ erlang ]
+    ++ lib.optionals javaGrade [ jdk ];
 
   patchPhase = ''
     # Fix calls to programs in /bin
@@ -37,8 +41,8 @@ stdenv.mkDerivation rec {
     for e in $(ls $out/bin) ; do
       wrapProgram $out/bin/$e \
         --prefix PATH ":" "${gcc}/bin" \
-        --prefix PATH ":" "${jdk}/bin" \
-        --prefix PATH ":" "${erlang}/bin"
+        ${if javaGrade then ''--prefix PATH ":" "${jdk}/bin"'' else ""} \
+        ${if erlangGrade then ''--prefix PATH ":" "${erlang}/bin"'' else ""}
     done
   '';
 

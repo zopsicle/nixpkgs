@@ -13300,7 +13300,15 @@ with pkgs;
 
   marst = callPackage ../development/compilers/marst { };
 
-  mercury = callPackage ../development/compilers/mercury {
+  mercury = callPackage ../development/compilers/mercury { };
+  mercuryErlang = callPackage ../development/compilers/mercury { erlangGrade = true; };
+  mercuryJava = callPackage ../development/compilers/mercury {
+    javaGrade = true;
+    jdk = openjdk8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
+  };
+  mercuryFull = callPackage ../development/compilers/mercury {
+    erlangGrade = true;
+    javaGrade = true;
     jdk = openjdk8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   };
 
