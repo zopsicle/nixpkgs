@@ -8,25 +8,25 @@ let
   glslang = fetchFromGitHub {
     owner = "KhronosGroup";
     repo = "glslang";
-    rev = "18eef33bd7a4bf5ad8c69f99cb72022608cf6e73";
-    sha256 = "sha256-tkWVvYmSpJPaZ8VJOkAWndDWhA0PiHAkR3feBAo+knM=";
+    rev = "89db4e1caa273a057ea46deba709c6e50001b314";
+    sha256 = "sha256-Vjyb0PNnUHjqniPUdsTl5Ut2If7j0bZaxJVl+5S9ZTY=";
   };
   spirv-tools = fetchFromGitHub {
     owner = "KhronosGroup";
     repo = "SPIRV-Tools";
-    rev = "c2d5375fa7cc87c93f692e7200d5d974283d4391";
-    sha256 = "sha256-tMJRljrlH+qb+27rTn+3LuEyMOVpiU0zSCiGNfUTb6g=";
+    rev = "eb0a36633d2acf4de82588504f951ad0f2cecacb";
+    sha256 = "sha256-sqjQoz9v9alSPc0ujEcWZxDAWh2S6oAPP1+JZmNCpA0=";
   };
   spirv-headers = fetchFromGitHub {
     owner = "KhronosGroup";
     repo = "SPIRV-Headers";
-    rev = "0c28b6451d77774912e52949c1e57fa726edf113";
-    sha256 = "sha256-KpCMceTV/BRaoJe1qeXhKYQNQqdGaM6Q9nklpJKzHFY=";
+    rev = "85a1ed200d50660786c1a88d9166e871123cce39";
+    sha256 = "sha256-lUWgZYGPu+IaLUrbtyC7R0o3Hq/q7C7BE8r7DAsiC30=";
   };
 in
 stdenv.mkDerivation rec {
   pname = "shaderc";
-  version = "2021.0";
+  version = "2022.3";
 
   outputs = [ "out" "lib" "bin" "dev" "static" ];
 
@@ -34,7 +34,7 @@ stdenv.mkDerivation rec {
     owner = "google";
     repo = "shaderc";
     rev = "v${version}";
-    sha256 = "sha256-RfSMzrGVtdXbr/mjSrHoN447e3vMQfJbesQMvLOARBs=";
+    sha256 = "sha256-DS3Y5oH4SU8dr2L29/0p5fi82f5i+4ILAxLXb0x0q2k=";
   };
 
   patchPhase = ''
